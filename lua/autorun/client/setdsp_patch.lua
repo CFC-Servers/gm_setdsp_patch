@@ -1,10 +1,8 @@
 local meta = FindMetaTable( "CSoundPatch" )
 meta._SetDSP = meta._SetDSP or meta.SetDSP
 
+local noop = function() end
 function meta:SetDSP( dsp )
-    if dsp > 0 and dsp < 17 then
-        dsp = 0
-    end
-
+    self.SetDSP = noop
     self:_SetDSP( dsp )
 end
