@@ -1,8 +1,10 @@
 local meta = FindMetaTable( "CSoundPatch" )
 meta._SetDSP = meta._SetDSP or meta.SetDSP
 
-local noop = function() end
+local disabledSoundPatches = {}
+
 function meta:SetDSP( dsp )
-    self.SetDSP = noop
+    if disabledSoundPatches[self] then return end
+    disabledSoundPatches[self] = true
     self:_SetDSP( dsp )
 end
